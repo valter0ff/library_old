@@ -8,15 +8,31 @@ class Reader
     @city = city
     @street = street
     @house = house
-    @errors = {}
-    validate_presence :name, :email, :city, :street, :house
-    validate_type String, :name, :email, :city, :street
-    validate_type Integer, :house
-    validate_emptiness :name, :email, :city, :street, :house
-    validate_positive :house
-    
+    @errors = []
   end
   
+  def valid?
+    [presence?, type?, emptiness?, positive?].all? 
+  end
+  
+  private
+  
+  def presence?
+    validate_presence :name, :email, :city, :street, :house 
+  end
+  
+  def type?
+    validate_type String, :name, :email, :city, :street
+    validate_type Integer, :house
+  end
+  
+  def emptiness?
+    validate_emptiness :name, :email, :city, :street, :house
+  end
+  
+  def positive?
+    validate_positive :house 
+  end
 end
 
 

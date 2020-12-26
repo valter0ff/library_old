@@ -5,12 +5,26 @@ class Book
   def initialize(title: nil, author: nil)
     @title = title
     @author = author
-    @errors = {}
-    
-    validate_presence :title, :author
-    validate_type String, :title
-    validate_type Author, :author
-    validate_emptiness :title     
+    @errors = []
   end
   
+  def valid?
+    [presence?, type?, emptiness?].all? 
+  end
+  
+  private
+  
+  def presence?
+    validate_presence :title, :author 
+  end
+  
+  def type?
+    validate_type String, :title
+    validate_type Author, :author
+  end
+  
+  def emptiness?
+    validate_emptiness :title
+  end
 end
+

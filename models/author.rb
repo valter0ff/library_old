@@ -5,11 +5,24 @@ class Author
   def initialize(name: nil, biography: {})
     @name = name
     @biography = biography
-    @errors = {}
-    
-    validate_presence :name
-    validate_type String,:name
-    validate_emptiness :name
+    @errors = []
   end
   
+  def valid?
+    [presence?, type?, emptiness?].all?
+  end
+  
+  private
+  
+  def presence?
+    validate_presence :name
+  end
+  
+  def type?
+    validate_type String, :name
+  end
+  
+  def emptiness?
+    validate_emptiness :name
+  end
 end

@@ -1,0 +1,9 @@
+Style/RedundantArgument: # (new in 1.4)
+  Enabled: true
+Style/SwapValues: # (new in 1.1)
+  Enabled: true
+Metrics/MethodLength:
+  IgnoredMethods: ["initialize"]
+  Max: 13
+Metrics/AbcSize:
+  IgnoredMethods: ["initialize"]

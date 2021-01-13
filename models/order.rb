@@ -3,18 +3,16 @@
 # class Order describes an Order model
 class Order
   include Validator
-  attr_reader :book, :reader, :date
+  attr_reader :book, :reader, :date, :errors
 
-# strftime("%B %d, %Y")
   def initialize(book: nil, reader: nil, date: Date.today)
     @book = book
     @reader = reader
     @date = date
-    @errors = []
   end
 
   def valid?
-    [presence?, type?].all?
+    presence? && type? && @book.valid? && @reader.valid?
   end
 
   private

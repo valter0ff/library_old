@@ -3,16 +3,15 @@
 # class Author describes an Author model
 class Author
   include Validator
-  attr_reader :name, :biography
+  attr_reader :name, :biography, :errors
 
   def initialize(name: nil, biography: nil)
     @name = name
     @biography = biography
-    @errors = []
   end
 
   def valid?
-    [presence?, type?, emptiness?].all?
+    presence? && type? && emptiness?
   end
 
   private

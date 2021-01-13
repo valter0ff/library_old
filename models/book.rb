@@ -3,16 +3,15 @@
 # class Book describes a Book model
 class Book
   include Validator
-  attr_reader :title, :author
+  attr_reader :title, :author, :errors
 
   def initialize(title: nil, author: nil)
     @title = title
     @author = author
-    @errors = []
   end
 
   def valid?
-    [presence?, type?, emptiness?].all?
+    presence? && type? && emptiness? && @author.valid?
   end
 
   private

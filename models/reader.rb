@@ -3,7 +3,7 @@
 # class Reader describes a Reader model
 class Reader
   include Validator
-  attr_reader :name, :email, :city, :street, :house
+  attr_reader :name, :email, :city, :street, :house, :errors
 
   def initialize(name: nil, email: nil, city: nil, street: nil, house: nil)
     @name = name
@@ -11,11 +11,10 @@ class Reader
     @city = city
     @street = street
     @house = house
-    @errors = []
   end
 
   def valid?
-    [presence?, type?, emptiness?, positive?].all?
+    presence? && type? && emptiness? && positive?
   end
 
   private

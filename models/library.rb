@@ -19,10 +19,10 @@ class Library
   end
 
   def uniq?(entity)
-    instance_variables.map do |var|
-      return false if instance_variable_get(var).include?(entity)
+    check = instance_variables.detect do |var|
+      instance_variable_get(var).include?(entity)
     end
-    true
+    check.nil?
   end
 
   def author_uniq?(entity)

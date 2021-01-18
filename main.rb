@@ -13,30 +13,64 @@ book2 = Book.new(title: "", author: "Djek Vorobey")
 order1 = Order.new(book: book2, reader: reader1)
 order2 = Order.new(book: book1, reader: reader2)
 
-
-p reader1.valid?
-p reader2.valid?
-p author2.valid?
-p author1.valid?
-p book1.valid?
-p book2.valid?
-p order1.valid?
-
 lib = Library.new
-lib.add(reader1)
-lib.add(reader2)
-lib.add(author1)
-lib.add(author2)
-lib.add(book1)
-lib.add(book2)
-lib.add(order1)
-lib.add(order2)
+
+begin
+  lib.add(reader1)
+rescue ValidationError => e
+  puts e.message
+end
+
+begin
+  lib.add(reader2)
+rescue ValidationError => e
+  puts e.message
+end
+
+begin
+  lib.add(author1)
+rescue ValidationError => e
+  puts e.message
+end
+
+begin
+  lib.add(author2)
+rescue ValidationError => e
+  puts e.message
+end
+
+begin
+  lib.add(book1)
+rescue ValidationError => e
+  puts e.message
+end
+
+begin
+  lib.add(book2)
+rescue ValidationError => e
+  puts e.message
+end
+
+begin
+  lib.add(order1)
+rescue ValidationError => e
+  puts e.message
+end
+
+begin
+  lib.add(order2)
+rescue ValidationError => e
+  puts e.message
+end
+
 lib.store_to_file
 
 
 lib1 = Library.new
 lib1.generate_data
-#lib1.store_to_file
+puts lib1.top_readers
+puts lib1.top_books
+puts lib1.number_readers_of_top_books
 
 binding.pry
 p

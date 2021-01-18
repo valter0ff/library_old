@@ -3,20 +3,6 @@
 # class Reader describes a Reader model
 class Reader
   include Validator
-  @@class_errors = []
-
-  class << self
-    def class_errors
-      @@class_errors
-    end
-
-    def show_errors
-      puts "Reader class contain not valid items:"
-      @@class_errors.each do |item|
-        puts "Item with id #{item.object_id} has errors: #{item.errors}"
-      end
-    end
-  end
 
   attr_reader :name, :email, :city, :street, :house, :errors
 
@@ -29,16 +15,16 @@ class Reader
   end
 
   def valid?
-    if presence.empty? && type.empty? && emptiness.empty? && positive.empty?
+    errors = [presence, type, emptiness, positive].flatten
+    if errors.empty?
       return true
     else
-      @@class_errors << self
-      @errors = [presence, type].flatten.compact
-      return false
+      msg = "Object with id #{self.object_id} errors: " + errors.join(', ')
+      raise ValidationError, msg
     end
   end
 
-  #private
+  private
 
   def presence
     validate_presence :name, :email, :city, :street, :house

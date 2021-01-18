@@ -3,6 +3,7 @@
 # class Reader describes a Reader model
 class Library
   include Seed
+  include Statistics
 
   DATA_FILE = File.expand_path('../db.yml', __dir__)
   CLASSES = [Integer, String, Date, Author, Book, Library, Order, Reader].freeze

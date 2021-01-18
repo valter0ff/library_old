@@ -3,20 +3,6 @@
 # class Author describes an Author model
 class Author
   include Validator
-  @@class_errors = []
-
-  class << self
-    def class_errors
-      @@class_errors
-    end
-
-    def show_errors
-      puts "Author class contain not valid items:"
-      @@class_errors.each do |item|
-        puts "Item with id #{item.object_id} has errors: #{item.errors}"
-      end
-    end
-  end
 
   attr_reader :name, :biography, :errors
 
@@ -26,12 +12,12 @@ class Author
   end
 
   def valid?
-    if presence.empty? && type.empty? && emptiness.empty?
+    errors = [presence, type, emptiness].flatten
+    if errors.empty?
       return true
     else
-      @@class_errors << self
-      @errors = [presence, type, emptiness].flatten.compact
-      return false
+      msg = "Object with id #{self.object_id} errors: " + errors.join(', ')
+      raise ValidationError, msg
     end
   end
 

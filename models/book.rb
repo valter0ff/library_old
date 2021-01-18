@@ -3,20 +3,6 @@
 # class Book describes a Book model
 class Book
   include Validator
-  @@class_errors = []
-
-  class << self
-    def class_errors
-      @@class_errors
-    end
-
-    def show_errors
-      puts "Book class contain not valid items:"
-      @@class_errors.each do |item|
-        puts "Item with id #{item.object_id} has errors: #{item.errors}"
-      end
-    end
-  end
 
   attr_reader :title, :author, :errors
 
@@ -26,12 +12,12 @@ class Book
   end
 
   def valid?
-    if presence.empty? && type.empty? && emptiness.empty? && @author.valid?
+    errors = [presence, type, emptiness].flatten
+    if errors.empty? && @author.valid?
       return true
     else
-      @@class_errors << self
-      @errors = [presence, type, emptiness].flatten.compact
-      return false
+      msg = "Object with id #{self.object_id} errors: " + errors.join(', ')
+      raise ValidationError, msg
     end
   end
 

@@ -31,7 +31,4 @@ module Validator
     end
     errors.compact
   end
-
-  class ValidationErrors < StandardError
-  end
 end

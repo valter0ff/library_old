@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# class Reader describes a Reader model
 class Library
   include Seed
   include Statistics

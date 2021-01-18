@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'autoload'
 
 reader1 = Reader.new(name: 22, email: '@sabaka', street: '', house: -10)

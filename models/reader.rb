@@ -4,7 +4,7 @@
 class Reader
   include Validator
 
-  attr_reader :name, :email, :city, :street, :house, :errors
+  attr_reader :name, :email, :city, :street, :house
 
   def initialize(name: nil, email: nil, city: nil, street: nil, house: nil)
     @name = name

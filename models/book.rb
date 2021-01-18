@@ -4,7 +4,7 @@
 class Book
   include Validator
 
-  attr_reader :title, :author, :errors
+  attr_reader :title, :author
 
   def initialize(title: nil, author: nil)
     @title = title

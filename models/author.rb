@@ -4,7 +4,7 @@
 class Author
   include Validator
 
-  attr_reader :name, :biography, :errors
+  attr_reader :name, :biography
 
   def initialize(name: nil, biography: nil)
     @name = name

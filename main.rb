@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'autoload'
-require 'pry-byebug'
-require 'awesome_print'
 
 reader1 = Reader.new(name: 22, email: "@sabaka", street: "", house: -10)
 reader2 = Reader.new(name: 'Mark', email: "markus@gmail.com", city: 'London', street: 'Bayker', house: 21)
@@ -65,12 +63,10 @@ end
 
 lib.store_to_file
 
-
 lib1 = Library.new
 lib1.generate_data
+
 puts lib1.top_readers
 puts lib1.top_books
 puts lib1.number_readers_of_top_books
 
-binding.pry
-p

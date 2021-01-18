@@ -32,3 +32,16 @@ orders:
     street: Bayker
     house: 21
   date: 2021-01-18
+- !ruby/object:Order
+  book: !ruby/object:Book
+    title: BEloe solnce
+    author: !ruby/object:Author
+      name: Boris Akunin
+      biography: 
+  reader: !ruby/object:Reader
+    name: Mark
+    email: markus@gmail.com
+    city: London
+    street: Bayker
+    house: 21
+  date: 2021-01-19

@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# Validator module - add validations to models
 module Validator
   def validate_type(class_name, *attributes)
     errors = attributes.map do |attr|

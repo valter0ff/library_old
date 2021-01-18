@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# class Author describes an Author model
 class Author
   include Validator
 
@@ -13,12 +10,10 @@ class Author
 
   def valid?
     errors = [presence, type, emptiness].flatten
-    if errors.empty?
-      return true
-    else
-      msg = "Object with id #{self.object_id} errors: " + errors.join(', ')
-      raise ValidationError, msg
-    end
+    return true if errors.empty?
+
+    msg = "Object with id #{object_id} errors: " + errors.join(', ')
+    raise ValidationError, msg
   end
 
   private

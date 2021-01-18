@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# class Order describes an Order model
 class Order
   include Validator
 
@@ -14,12 +11,10 @@ class Order
 
   def valid?
     errors = [presence, type].flatten
-    if errors.empty? && @book.valid? && @reader.valid?
-      return true
-    else
-      msg = "Object with id #{self.object_id} errors: " + errors.join(', ')
-      raise ValidationError, msg
-    end
+    return true if errors.empty? && @book.valid? && @reader.valid?
+
+    msg = "Object with id #{object_id} errors: " + errors.join(', ')
+    raise ValidationError, msg
   end
 
   private
@@ -30,7 +25,7 @@ class Order
 
   def type
     [validate_type(Book, :book),
-    validate_type(Reader, :reader),
-    validate_type(Date, :date)].flatten
+     validate_type(Reader, :reader),
+     validate_type(Date, :date)].flatten
   end
 end

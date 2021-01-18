@@ -2,12 +2,12 @@
 
 require_relative 'autoload'
 
-reader1 = Reader.new(name: 22, email: "@sabaka", street: "", house: -10)
-reader2 = Reader.new(name: 'Mark', email: "markus@gmail.com", city: 'London', street: 'Bayker', house: 21)
-author1 = Author.new(name: "Boris Akunin")
-author2 = Author.new(name: '', biography: "some bio")
-book1 = Book.new(title: "BEloe solnce", author: author1)
-book2 = Book.new(title: "", author: "Djek Vorobey")
+reader1 = Reader.new(name: 22, email: '@sabaka', street: '', house: -10)
+reader2 = Reader.new(name: 'Mark', email: 'markus@gmail.com', city: 'London', street: 'Bayker', house: 21)
+author1 = Author.new(name: 'Boris Akunin')
+author2 = Author.new(name: '', biography: 'some bio')
+book1 = Book.new(title: 'BEloe solnce', author: author1)
+book2 = Book.new(title: '', author: 'Djek Vorobey')
 order1 = Order.new(book: book2, reader: reader1)
 order2 = Order.new(book: book1, reader: reader2)
 
@@ -69,4 +69,3 @@ lib1.generate_data
 puts lib1.top_readers
 puts lib1.top_books
 puts lib1.number_readers_of_top_books
-

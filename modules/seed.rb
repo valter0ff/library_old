@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 require 'faker'
 
-# module Seed generate fake data
 module Seed
   def generate_data
     seed_authors

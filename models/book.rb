@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# class Book describes a Book model
 class Book
   include Validator
 
@@ -13,12 +10,10 @@ class Book
 
   def valid?
     errors = [presence, type, emptiness].flatten
-    if errors.empty? && @author.valid?
-      return true
-    else
-      msg = "Object with id #{self.object_id} errors: " + errors.join(', ')
-      raise ValidationError, msg
-    end
+    return true if errors.empty? && @author.valid?
+
+    msg = "Object with id #{object_id} errors: " + errors.join(', ')
+    raise ValidationError, msg
   end
 
   private
@@ -29,7 +24,7 @@ class Book
 
   def type
     [validate_type(String, :title),
-    validate_type(Author, :author)].flatten
+     validate_type(Author, :author)].flatten
   end
 
   def emptiness

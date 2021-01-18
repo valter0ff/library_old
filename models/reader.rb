@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-
-# class Reader describes a Reader model
 class Reader
   include Validator
 
@@ -16,12 +13,10 @@ class Reader
 
   def valid?
     errors = [presence, type, emptiness, positive].flatten
-    if errors.empty?
-      return true
-    else
-      msg = "Object with id #{self.object_id} errors: " + errors.join(', ')
-      raise ValidationError, msg
-    end
+    return true if errors.empty?
+
+    msg = "Object with id #{object_id} errors: " + errors.join(', ')
+    raise ValidationError, msg
   end
 
   private
@@ -32,7 +27,7 @@ class Reader
 
   def type
     [validate_type(String, :name, :email, :city, :street),
-    validate_type(Integer, :house)].flatten
+     validate_type(Integer, :house)].flatten
   end
 
   def emptiness

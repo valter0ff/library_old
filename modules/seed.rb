@@ -1,5 +1,3 @@
-require 'faker'
-
 module Seed
   def generate_data
     seed_authors

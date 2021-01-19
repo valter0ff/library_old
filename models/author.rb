@@ -8,7 +8,7 @@ class Author
     @biography = biography
   end
 
-  def valid?
+  def valid
     errors = [presence, type, emptiness].flatten
     return true if errors.empty?
 

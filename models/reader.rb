@@ -11,7 +11,7 @@ class Reader
     @house = house
   end
 
-  def valid?
+  def valid
     errors = [presence, type, emptiness, positive].flatten
     return true if errors.empty?
 

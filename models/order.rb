@@ -9,9 +9,9 @@ class Order
     @date = date
   end
 
-  def valid?
+  def valid
     errors = [presence, type].flatten
-    return true if errors.empty? && @book.valid? && @reader.valid?
+    return true if errors.empty? && @book.valid && @reader.valid
 
     msg = "Object with id #{object_id} errors: " + errors.join(', ')
     raise ValidationError, msg

@@ -8,9 +8,9 @@ class Book
     @author = author
   end
 
-  def valid?
+  def valid
     errors = [presence, type, emptiness].flatten
-    return true if errors.empty? && @author.valid?
+    return true if errors.empty? && @author.valid
 
     msg = "Object with id #{object_id} errors: " + errors.join(', ')
     raise ValidationError, msg

@@ -44,7 +44,7 @@ class Library
   end
 
   def can_add?(entity)
-    entity.valid? && uniq?(entity)
+    entity.valid && uniq?(entity)
   end
 
   def add(entity)

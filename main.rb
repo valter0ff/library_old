@@ -59,6 +59,12 @@ rescue ValidationError => e
   puts e.message
 end
 
+begin
+  lib.add(order2)
+rescue ValidationError => e
+  puts e.message
+end
+
 lib.store_to_file
 
 lib1 = Library.new

@@ -48,7 +48,7 @@ class Library
   end
 
   def add(entity)
-    return unless can_add?(entity)
+    raise ValidationError, 'Object is not uniq' unless can_add?(entity)
 
     if entity.is_a?(Author) && author_uniq?(entity) then @authors << entity
     elsif entity.is_a?(Book) && book_uniq?(entity) then @books << entity

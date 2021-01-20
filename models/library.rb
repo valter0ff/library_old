@@ -18,10 +18,12 @@ class Library
   end
 
   def add(entity)
-    if entity.is_a?(Author) && entity.valid? then @authors << entity
-    elsif entity.is_a?(Book) && entity.valid? then @books << entity
-    elsif entity.is_a?(Reader) && entity.valid? then @readers << entity
-    elsif entity.is_a?(Order) && entity.valid? then @orders << entity
+    entity.validate! if entity.respond_to?(:validate!)
+    case entity
+    when Author then @authors << entity
+    when Book then @books << entity
+    when Reader then @readers << entity
+    when Order then @orders << entity
     else
       raise NotAllowedObject, ADDING_ERROR
     end

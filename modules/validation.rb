@@ -1,9 +1,7 @@
 module Validator
   def validate_class(class_name, *attributes)
     errors = attributes.map do |attr|
-      if public_send(attr).class != class_name
-        "Type of #{attr} must be an instance of #{class_name}"
-      end
+      "Type of #{attr} must be an instance of #{class_name}" if public_send(attr).class != class_name
     end
     errors.compact
   end

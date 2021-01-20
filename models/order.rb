@@ -9,8 +9,11 @@ class Order
     @date = date
   end
 
-  def valid?
-    [check_presence, check_class].all? && @book.valid? && @reader.valid?
+  def validate!
+    check_presence
+    check_class
+    @book.validate!
+    @reader.validate!
   end
 
   private

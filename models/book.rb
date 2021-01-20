@@ -8,8 +8,11 @@ class Book
     @author = author
   end
 
-  def valid?
-    [check_presence, check_class, check_emptiness].all? && @author.valid?
+  def validate!
+    check_presence
+    check_class
+    check_emptiness
+    @author.validate!
   end
 
   private

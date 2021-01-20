@@ -8,8 +8,10 @@ class Author
     @biography = biography
   end
 
-  def valid?
-    [check_presence, check_class, check_emptiness].all?
+  def validate!
+    check_presence
+    check_class
+    check_emptiness
   end
 
   private

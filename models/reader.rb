@@ -11,8 +11,11 @@ class Reader
     @house = house
   end
 
-  def valid?
-    [check_presence, check_class, check_emptiness, check_positive].all?
+  def validate!
+    check_presence
+    check_class
+    check_emptiness
+    check_positive
   end
 
   private

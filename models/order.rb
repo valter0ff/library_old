@@ -9,23 +9,21 @@ class Order
     @date = date
   end
 
-  def valid
-    errors = [presence, type].flatten
-    return true if errors.empty? && @book.valid && @reader.valid
-
-    msg = "Object with id #{object_id} errors: " + errors.join(', ')
-    raise ValidationError, msg
+  def valid?
+    [check_presence, check_class].all? && @book.valid? && @reader.valid?
   end
 
   private
 
-  def presence
-    validate_presence :book
+  def check_presence
+    errors = validate_presence :book
+    errors.empty? ? true : raise(PresenceError, errors)
   end
 
-  def type
-    [validate_type(Book, :book),
-     validate_type(Reader, :reader),
-     validate_type(Date, :date)].flatten
+  def check_class
+    errors = [validate_class(Book, :book),
+              validate_class(Reader, :reader),
+              validate_class(Date, :date)].flatten
+    errors.empty? ? true : raise(ClassError, errors)
   end
 end

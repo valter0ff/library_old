@@ -11,30 +11,30 @@ class Reader
     @house = house
   end
 
-  def valid
-    errors = [presence, type, emptiness, positive].flatten
-    return true if errors.empty?
-
-    msg = "Object with id #{object_id} errors: " + errors.join(', ')
-    raise ValidationError, msg
+  def valid?
+    [check_presence, check_class, check_emptiness, check_positive].all?
   end
 
   private
 
-  def presence
-    validate_presence :name, :email, :city, :street, :house
+  def check_presence
+    errors = validate_presence :name, :email, :city, :street, :house
+    errors.empty? ? true : raise(PresenceError, errors)
   end
 
-  def type
-    [validate_type(String, :name, :email, :city, :street),
-     validate_type(Integer, :house)].flatten
+  def check_class
+    errors = [validate_class(String, :name, :email, :city, :street),
+              validate_class(Integer, :house)].flatten
+    errors.empty? ? true : raise(ClassError, errors)
   end
 
-  def emptiness
-    validate_emptiness :name, :email, :city, :street, :house
+  def check_emptiness
+    errors = validate_emptiness :name, :email, :city, :street, :house
+    errors.empty? ? true : raise(EmptinessError, errors)
   end
 
-  def positive
-    validate_positive :house
+  def check_positive
+    errors = validate_positive :house
+    errors.empty? ? true : raise(PositiveNumberError, errors)
   end
 end

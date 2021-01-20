@@ -1,5 +1,5 @@
 module Validator
-  def validate_type(class_name, *attributes)
+  def validate_class(class_name, *attributes)
     errors = attributes.map do |attr|
       if public_send(attr).class != class_name
         "Type of #{attr} must be an instance of #{class_name}"

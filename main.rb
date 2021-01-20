@@ -10,66 +10,38 @@ order1 = Order.new(book: book2, reader: reader1)
 order2 = Order.new(book: book1, reader: reader2)
 
 lib = Library.new
-
-begin
-  lib.add(reader1)
-rescue ValidationError => e
-  puts e.message
-end
-
-begin
-  lib.add(reader2)
-rescue ValidationError => e
-  puts e.message
-end
-
-begin
-  lib.add(author1)
-rescue ValidationError => e
-  puts e.message
-end
+lib.add(reader2)
+lib.add(author1)
+lib.add(book1)
+lib.add(order2)
 
 begin
   lib.add(author2)
-rescue ValidationError => e
+rescue EmptinessError => e
   puts e.message
 end
 
 begin
-  lib.add(book1)
-rescue ValidationError => e
+  lib.add(reader1)
+rescue PresenceError => e
   puts e.message
 end
 
 begin
   lib.add(book2)
-rescue ValidationError => e
+rescue ClassError => e
   puts e.message
 end
 
 begin
   lib.add(order1)
-rescue ValidationError => e
+rescue ClassError => e
   puts e.message
 end
 
-begin
-  lib.add(order2)
-rescue ValidationError => e
-  puts e.message
-end
-
-begin
-  lib.add(order2)
-rescue ValidationError => e
-  puts e.message
-end
-
+lib.generate_data
 lib.store_to_file
 
-lib1 = Library.new
-lib1.generate_data
-
-puts lib1.top_readers
-puts lib1.top_books
-puts lib1.number_readers_of_top_books
+puts lib.top_readers
+puts lib.top_books
+puts lib.number_readers_of_top_books

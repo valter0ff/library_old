@@ -5,13 +5,7 @@ Style/RedundantArgument: # (new in 1.4)
   Enabled: true
 Style/SwapValues: # (new in 1.1)
   Enabled: true
-Metrics/MethodLength:
-  Max: 20
 Style/FrozenStringLiteralComment:
   Enabled: false
-Metrics/PerceivedComplexity:
-  Max: 14
-Metrics/CyclomaticComplexity:
-  Max: 14
 Style/Documentation:
   Enabled: false

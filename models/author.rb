@@ -8,25 +8,24 @@ class Author
     @biography = biography
   end
 
-  def valid
-    errors = [presence, type, emptiness].flatten
-    return true if errors.empty?
-
-    msg = "Object with id #{object_id} errors: " + errors.join(', ')
-    raise ValidationError, msg
+  def valid?
+    [check_presence, check_class, check_emptiness].all?
   end
 
   private
 
-  def presence
-    validate_presence :name
+  def check_presence
+    errors = validate_presence :name
+    errors.empty? ? true : raise(PresenceError, errors)
   end
 
-  def type
-    validate_type String, :name
+  def check_class
+    errors = validate_class String, :name
+    errors.empty? ? true : raise(ClassError, errors)
   end
 
-  def emptiness
-    validate_emptiness :name
+  def check_emptiness
+    errors = validate_emptiness :name
+    errors.empty? ? true : raise(EmptinessError, errors)
   end
 end

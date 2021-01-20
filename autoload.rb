@@ -1,7 +1,7 @@
 require 'date'
 require 'yaml'
 require 'faker'
-require_relative 'errorclass'
+require_relative 'error_class'
 require_relative 'modules/validation'
 require_relative 'modules/statistics'
 require_relative 'modules/seed'

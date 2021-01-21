@@ -39,7 +39,7 @@ rescue ClassError => e
   puts e.message
 end
 
-lib.generate_data
+Seed.new(lib).generate_data
 lib.store_to_file
 
 puts lib.top_readers(lib.orders)

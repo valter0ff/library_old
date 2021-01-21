@@ -1,5 +1,4 @@
 class Library
-  include Seed
   include Statistics
 
   DATA_FILE = File.expand_path('../db.yml', __dir__)

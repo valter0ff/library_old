@@ -18,16 +18,16 @@ class Author
 
   def check_presence
     errors = validate_presence :name
-    errors.empty? ? true : raise(PresenceError, errors)
+    raise PresenceError, errors unless errors.empty?
   end
 
   def check_class
     errors = validate_class String, :name
-    errors.empty? ? true : raise(ClassError, errors)
+    raise ClassError, errors unless errors.empty?
   end
 
   def check_emptiness
     errors = validate_emptiness :name
-    errors.empty? ? true : raise(EmptinessError, errors)
+    raise EmptinessError, errors unless errors.empty?
   end
 end

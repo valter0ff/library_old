@@ -20,13 +20,13 @@ class Order
 
   def check_presence
     errors = validate_presence :book
-    errors.empty? ? true : raise(PresenceError, errors)
+    raise PresenceError, errors unless errors.empty?
   end
 
   def check_class
     errors = [validate_class(Book, :book),
               validate_class(Reader, :reader),
               validate_class(Date, :date)].flatten
-    errors.empty? ? true : raise(ClassError, errors)
+    raise ClassError, errors unless errors.empty?
   end
 end

@@ -22,22 +22,22 @@ class Reader
 
   def check_presence
     errors = validate_presence :name, :email, :city, :street, :house
-    errors.empty? ? true : raise(PresenceError, errors)
+    raise PresenceError, errors unless errors.empty?
   end
 
   def check_class
     errors = [validate_class(String, :name, :email, :city, :street),
               validate_class(Integer, :house)].flatten
-    errors.empty? ? true : raise(ClassError, errors)
+    raise ClassError, errors unless errors.empty?
   end
 
   def check_emptiness
     errors = validate_emptiness :name, :email, :city, :street, :house
-    errors.empty? ? true : raise(EmptinessError, errors)
+    raise EmptinessError, errors unless errors.empty?
   end
 
   def check_positive
     errors = validate_positive :house
-    errors.empty? ? true : raise(PositiveNumberError, errors)
+    raise PositiveNumberError, errors unless errors.empty?
   end
 end

@@ -42,6 +42,6 @@ end
 lib.generate_data
 lib.store_to_file
 
-puts lib.top_readers
-puts lib.top_books
-puts lib.number_readers_of_top_books
+puts lib.top_readers(lib.orders)
+puts lib.top_books(lib.orders)
+puts lib.number_readers_of_top_books(lib.orders)
